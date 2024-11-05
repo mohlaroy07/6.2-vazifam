@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row row-cols-4 g-3">
+    {% for food in foods %}
+
+    <div class="col">
+        <div class="card border-primary mb-3 h-100" style="max-width: 18rem;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-primary">
+                <h5 class="card-title">
+                    <a href="{% url 'food_detail' food.pk %}">{{ food.nomi }}</a>
+                </h5>
+                <p class="card-text">
+                    {{ food.tarkibi }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

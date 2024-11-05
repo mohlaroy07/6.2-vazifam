@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-8">
+
+        <div class="post-entry">
+            <h2>{{ food.nomi}}</h2>
+            <h3>{{ food.tarkibi }}</h3>
+            <h3>{{ food.narxi }}</h3>
+        </div>
+
+    </div>
+    <div class="col-4">
+        <form method="POST"> {% csrf_token %}
+            <p>
+                <label for="text">Izoh</label>
+                <input type="text" id="text" class="form-control" name="text">
+            </p>
+            <button class="btn btn-success w-100">Yuborish</button>
+        </form>
+        {% for comment in comments %}
+        <div class="border p-2 mt-2">
+            <span class="creator fw-bold">
+                {{ comment.user.username }}:
+            </span>
+
+            <span>
+                {{ comment.text }}
+            </span>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+<p><a href="{% url 'food_edit' food.pk %}">Taomni tahrirlash</a></p>
+<p><a href="{% url 'food_delete' food.pk %}">Taomni o'chirish</a></p>
